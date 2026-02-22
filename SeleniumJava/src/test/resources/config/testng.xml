@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- 
+PARALLEL EXECUTION MODES:
+- parallel="tests"    : Run test tags in parallel
+- parallel="classes"  : Run classes in parallel
+- parallel="methods"  : Run methods in parallel
+- thread-count="3"    : Number of parallel threads
+-->
+
+<suite name="Selenium Automation Suite" verbose="2" parallel="false" thread-count="1">
+    
+    <!-- Global Test Parameters -->
+    <parameter name="browser" value="chrome"/>
+    <parameter name="baseUrl" value="https://www.google.com"/>
+    
+    <!-- 
+    Google Search Tests - DISABLED DUE TO CAPTCHA
+    Google blocks automated browsers with CAPTCHA verification.
+    To enable: uncomment below and set enabled=true in GoogleSearchTest.java
+    
+    <test name="Google Search Tests" preserve-order="true">
+        <classes>
+            <class name="com.seleniumjava.tests.GoogleSearchTest">
+                <methods>
+                    <include name="testGoogleSearchFunctionality"/>
+                    <include name="testSearchResultsCount"/>
+                    <include name="testSearchPageTitle"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    -->
+
+    <!-- 
+    Uncomment below to add listener for extended reports
+    <listeners>
+        <listener class-name="com.seleniumjava.listeners.TestListener"/>
+    </listeners>
+    -->
+    
+</suite>

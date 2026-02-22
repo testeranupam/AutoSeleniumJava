@@ -1,0 +1,54 @@
+# IDE Settings
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+
+# Build & Compilation
+target/
+build/
+dist/
+bin/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+
+# Maven
+.mvn/
+maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
+dependency-reduced-pom.xml
+
+# Logs
+*.log
+logs/
+*.log.gz
+
+# Test Reports
+test-results/
+**/surefire-reports/
+**/failsafe-reports/
+
+# Screenshots & Test Artifacts
+screenshots/
+reports/
+artifacts/
+
+# OS Files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environment & Local Config
+.env
+.env.local
+*.properties.local

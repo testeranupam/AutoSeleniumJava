@@ -1,0 +1,6 @@
+productId,name,category,price,quantity,description,inStock,brand,rating
+P001,Laptop,Electronics,899.99,10,High-performance laptop,true,Dell,4.5
+P002,Mouse,Accessories,29.99,50,Wireless mouse,true,Logitech,4.2
+P003,Keyboard,Accessories,79.99,30,Mechanical keyboard,true,Corsair,4.7
+P004,Monitor,Electronics,299.99,15,27-inch 4K monitor,true,Samsung,4.6
+P005,Headphones,Accessories,149.99,0,Noise-cancelling headphones,false,Sony,4.8

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- 
+PARALLEL EXECUTION MODE: Classes
+- Runs different test classes in parallel
+- Each class runs in a separate thread
+- Best for running multiple independent test classes concurrently
+-->
+
+<suite name="Parallel Classes Suite" verbose="2" parallel="classes" thread-count="3">
+    
+    <listeners>
+        <listener class-name="com.seleniumjava.listeners.TestListener"/>
+    </listeners>
+    
+    <parameter name="browser" value="chrome"/>
+    <parameter name="baseUrl" value="https://www.google.com"/>
+    
+    <test name="All Tests - Parallel Classes">
+        <classes>
+            <!-- Both classes will run in parallel -->
+            <class name="com.seleniumjava.tests.GoogleSearchTest"/>
+            <class name="com.seleniumjava.tests.SampleTestTemplate"/>
+        </classes>
+    </test>
+    
+</suite>

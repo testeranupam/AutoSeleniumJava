@@ -1,0 +1,6 @@
+username,password,email,firstName,lastName,age,active,role
+john.doe,Pass123,john.doe@example.com,John,Doe,30,true,USER
+jane.smith,Pass456,jane.smith@example.com,Jane,Smith,28,true,ADMIN
+bob.wilson,Pass789,bob.wilson@example.com,Bob,Wilson,35,true,USER
+alice.brown,Pass321,alice.brown@example.com,Alice,Brown,25,true,USER
+mike.jones,Pass654,mike.jones@example.com,Mike,Jones,40,false,USER

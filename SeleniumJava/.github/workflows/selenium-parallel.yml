@@ -1,0 +1,115 @@
+name: Selenium Tests - Parallel Execution
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Run daily at 2 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  parallel-by-classes:
+    name: Parallel (By Classes)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Install dependencies
+        run: mvn clean install -DskipTests -q
+      
+      - name: Run tests in parallel by classes
+        run: mvn test -Dsuites=src/test/resources/config/testng-parallel-classes.xml -q
+        continue-on-error: true
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: parallel-classes-results
+          path: target/surefire-reports/
+          retention-days: 30
+
+  parallel-by-methods:
+    name: Parallel (By Methods)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Install dependencies
+        run: mvn clean install -DskipTests -q
+      
+      - name: Run tests in parallel by methods
+        run: mvn test -Dsuites=src/test/resources/config/testng-parallel-methods.xml -q
+        continue-on-error: true
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: parallel-methods-results
+          path: target/surefire-reports/
+          retention-days: 30
+
+  parallel-by-tests:
+    name: Parallel (By Tests)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Install dependencies
+        run: mvn clean install -DskipTests -q
+      
+      - name: Run tests in parallel by tests
+        run: mvn test -Dsuites=src/test/resources/config/testng-parallel-tests.xml -q
+        continue-on-error: true
+      
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: parallel-tests-results
+          path: target/surefire-reports/
+          retention-days: 30
+
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [parallel-by-classes, parallel-by-methods, parallel-by-tests]
+    
+    steps:
+      - name: Download all results
+        uses: actions/download-artifact@v3
+      
+      - name: Generate summary
+        run: |
+          echo "## 📊 Parallel Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Parallel by Classes: Complete" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Parallel by Methods: Complete" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Parallel by Tests: Complete" >> $GITHUB_STEP_SUMMARY

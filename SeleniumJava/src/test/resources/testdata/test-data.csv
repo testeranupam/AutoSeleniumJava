@@ -1,0 +1,6 @@
+username,password,country,expectedResult
+testuser1,pass123,United States,success
+testuser2,pass456,Canada,success
+testuser3,pass789,United Kingdom,success
+admin,admin123,India,success
+guest,guest,Australia,fail

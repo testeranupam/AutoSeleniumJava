@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- 
+PARALLEL EXECUTION MODE: Tests
+- Runs different <test> blocks in parallel
+- Each test runs in a separate thread
+- Best for running same tests on different environments/browsers
+-->
+
+<suite name="Parallel Tests Suite" verbose="2" parallel="tests" thread-count="3">
+    
+    <listeners>
+        <listener class-name="com.seleniumjava.listeners.TestListener"/>
+    </listeners>
+    
+    <!-- Test 1: Chrome Browser -->
+    <test name="Google Search - Chrome">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="baseUrl" value="https://www.google.com"/>
+        <classes>
+            <class name="com.seleniumjava.tests.GoogleSearchTest">
+                <methods>
+                    <include name="testGoogleSearchFunctionality"/>
+                    <include name="testSearchResultsCount"/>
+                    <include name="testSearchPageTitle"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Test 2: Additional Search Tests -->
+    <test name="Google Search - Additional">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="baseUrl" value="https://www.google.com"/>
+        <classes>
+            <class name="com.seleniumjava.tests.GoogleSearchTest">
+                <methods>
+                    <include name="testGoogleSearchFunctionality"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Test 3: Sample Test -->
+    <test name="Sample Tests">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="baseUrl" value="https://www.google.com"/>
+        <classes>
+            <class name="com.seleniumjava.tests.SampleTestTemplate">
+                <methods>
+                    <include name="testExample"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+</suite>
